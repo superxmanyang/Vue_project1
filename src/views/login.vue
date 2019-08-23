@@ -12,7 +12,7 @@
           <!-- READme接口文档把name改成username -->
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" class="login-btn">登陆</el-button>
+          <el-button type="primary" class="login-btn" @click='login'>登陆</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -23,7 +23,6 @@
 export default {
   data () {
     //   <!-- READme接口文档把name改成username -->
-
     return {
       loginForm: {
         username: '',
@@ -38,6 +37,19 @@ export default {
         ],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
       }
+    }
+  },
+
+  methods: {
+    login () {
+      this.$refs.loginForm.validate((valid) => {
+        if (valid) {
+          console.log('可以发请求了')
+        } else {
+          console.log('用户数据输入有错')
+          return false
+        }
+      })
     }
   }
 }
