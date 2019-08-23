@@ -48,8 +48,10 @@ export default {
         if (valid) {
           login(this.loginForm)
             .then((res) => {
-              console.log(res)
               if (res.data.meta.status === 200) {
+                console.log(res)
+                // 讲token存储在本地
+                localStorage.setItem('myproject_manager_35_token', res.data.data.token)
                 // 实现业务的跳转
                 // 实现路由跳转
                 this.$router.push({ name: 'home' })
