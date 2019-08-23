@@ -51,6 +51,8 @@ export default {
               console.log(res)
               if (res.data.meta.status === 200) {
                 // 实现业务的跳转
+                // 实现路由跳转
+                this.$router.push({ name: 'home' })
               } else {
                 this.$message({
                   message: res.data.meta.msg,
