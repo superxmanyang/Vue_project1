@@ -20,6 +20,8 @@
 </template>
 
 <script>
+// 引入接口方法
+import { login } from '@/api/login_index.js'
 export default {
   data () {
     //   <!-- READme接口文档把name改成username -->
@@ -44,7 +46,24 @@ export default {
     login () {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
-          console.log('可以发请求了')
+          login(this.loginForm)
+            .then((res) => {
+              console.log(res)
+              if (res.data.meta.status === 200) {
+                // 实现业务的跳转
+              } else {
+                this.$message({
+                  message: res.data.meta.msg,
+                  type: 'warning'
+                })
+              }
+            })
+            .catch(() => {
+              this.$message({
+                message: '服务器异常，请稍后重试',
+                type: 'error'
+              })
+            })
         } else {
           this.$message({
             //   提示信息
