@@ -46,7 +46,13 @@ export default {
         if (valid) {
           console.log('可以发请求了')
         } else {
-          console.log('用户数据输入有错')
+          this.$message({
+            //   提示信息
+            message: '请输入所有必填数据',
+            // 提示类型：success,info,error,warning
+            type: 'warning'
+          })
+          //   this.$message.warning('请输入所有必填数据')
           return false
         }
       })
